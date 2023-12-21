@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/client/index::dynamic(~{::body})}">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description"
+          content="Male_Fashion Template" />
+    <meta name="keywords"
+          content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible"
+          content="/ie=edge" />
+    <title>Giỏ hàng</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet" />
+    <!-- Css Styles -->
+    <link rel="stylesheet"
+          href="/css/bootstrap.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/font-awesome.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/elegant-icons.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/magnific-popup.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/nice-select.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/owl.carousel.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/slicknav.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/style.css"
+          type="text/css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js'
+            integrity='sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=='
+            crossorigin='anonymous'></script>
+  </head>
+
+  <body ng-app="app"
+        ng-controller="cartCtrl">
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb__text">
+              <h4>Giỏ hàng</h4>
+              <div class="breadcrumb__links">
+                <a href="/">Trang chủ </a>
+                <a href="/shop">Đơn hàng</a>
+                <span>Giỏ hàng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="shopping__cart__table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                    </th>
+                    <th>Sản phẩm </th>
+                    <th>Số lượng</th>
+                    <th>Tổng cộng</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="cart.items.length == 0">
+                    <td colspan="4">
+                      <div class="alert alert-info text-center">
+                        Chưa có sản phẩm nào trong giỏ hàng của bạn !
+                      </div>
+                    </td>
+                  </tr>
+                  <tr id="cartdetail"
+                      ng-repeat="item in cart.items ">
+                    <td>
+                      <input type="checkbox"
+                             class="form-control-lg"
+                             ng-model="check"
+                             ng-checked="checkAll"
+                             ng-change="cart.setSelected(item.id)">
+                    </td>
+                    <td class="product__cart__item d-flex justify-content-space-bewteen">
+                      <div class="product__cart__item__pic">
+                        <img th:src="@{/img/product/{{item.image}}}"
+                             alt=""
+                             width="90px"
+                             height="90px"
+                             class="" />
+                      </div>
+                      <div class="product__cart__item__text">
+                        <h6><a href="/shop/product-detail?id={{item.id}}"
+                             class="text-secondary">
+                            {{item.name}}
+                          </a>
+                        </h6>
+                        <h5>
+                          {{item.price | number : 2}}<sup>đ</sup>
+                        </h5>
+                      </div>
+                    </td>
+                    <td class="quantity__item">
+                      <div class=" quantity">
+                        <div class="pro-qty-2 d-flex justify-content-space-bewteen">
+                          <div style="cursor: pointer;"
+                               class=""><i ng-click="cart.minus(item.id)"
+                               class="fa fa-minus"></i></div>
+                          <input ng-disabled="check"
+                                 type="number"
+                                 ng-model="item.quantity"
+                                 min="1"
+                                 ng-change="cart.saveToLocalStorage()"
+                                 class="" />
+                          <div style="cursor: pointer;"
+                               class=""><i ng-click="cart.plus(item.id)"
+                               class="fa fa-plus"></i></div>
+                        </div>
+                    </td>
+                    <td class="cart__price">
+                      {{item.quantity * item.price | number : 2}}<sup>đ</sup>
+                    </td>
+                    <td class="cart__close">
+                      <div style="cursor: pointer;"
+                           ng-click="cart.remove(item.id)">
+                        <i class="
+                           fa
+                           fa-close
+                           text-danger"></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="btn-group-toggle mb-3"
+                 ng-if="cart.items.length != 0"
+                 data-toggle="buttons">
+              <label class="btn btn-outline-secondary ">
+                <input type="checkbox"
+                       id="checkAll"
+                       hidden
+                       class="form-control-lg"
+                       ng-click="cart.selectAll()"
+                       ng-model="checkAll"
+                       autocomplete="off"> {{cart.checkAll ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}}
+              </label>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-5 ">
+
+                <div class="continue__btn">
+                  <a href="/shop">Tiếp tục mua sắm</a>
+                </div>
+              </div>
+              <div ng-if="cart.items.length != 0"
+                   class="col-lg-6 col-md-6 col-sm-5">
+                <div ng-click="cart.clear()"
+                     class="btn btn-lg btn-outline-danger">
+                  Xóa hết sản phẩm
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="cart__total rounded shadow-sm ">
+              <h4 class="text-center mb-3">Thông tin đặt hàng</h4>
+              <ul>
+                <li>
+                  Tổng sản phẩm <span> <i>{{cart.count}}</i> sản phẩm</span>
+                </li>
+                <li>
+                  Tổng tiền <span>
+                    {{cart.amount | number: 2}}<sup>đ</sup>
+                  </span>
+                </li>
+              </ul>
+              <a ng-click="cart.order()"
+                 th:href="@{/shop/checkout}"
+                 ng-if="cart.selectedItems.length != 0"
+                 class="btn btn-success w-100">Đặt hàng </a>
+            </div>
+            <div ng-if="cart.selectedItems.length == 0"
+                 class="alert alert-warning text-center  w-100">Vui lòng chọn sản phẩm để đặt hàng</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+          <input type="text"
+                 id="search-input"
+                 placeholder="Search here....." />
+        </form>
+      </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/jquery.countdown.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/cart.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="ISO-8859-1">
+		<!--  Css Styles -->
+		<link th:href="@{/css/bootstrap.min.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/font-awesome.min.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/elegant-icons.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/magnific-popup.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/nice-select.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/owl.carousel.min.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/slicknav.min.css}"
+			  rel="stylesheet">
+		<link th:href="@{/css/style.css}"
+			  rel="stylesheet">
+	</head>
+
+	<body>
+		<!-- Header Section Begi -->
+		<header th:fragment="header"
+				class="header header_scroll_top"
+				id="header_scroll_top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-3">
+						<div class="header__logo">
+							<a href="/"><img src="/img/main-logo.png"
+									 alt="logo"
+									 height="35px" /></a>
+						</div>
+					</div>
+					<div class="col-lg-5 col-md-5">
+						<nav class="header__menu mobile-menu">
+							<ul>
+								<li ng-class="{ 'active' : cart.path == ''}"><a href="/">Trang
+										chủ</a></li>
+								<li ng-class="{ 'active' : cart.path == 'shop'}"><a href="/shop">Sản phẩm
+									</a></li>
+								<li ng-class="{ 'active' : cart.path == 'order'}"><a href="/shop/order-history">Đơn
+										hàng </a></li>
+								<span th:object="${session.username}"></span>
+							</ul>
+						</nav>
+					</div>
+					<div class="col-lg-4 col-md-4">
+						<div class="header__nav__option">
+							<a href="/shop/cart-detail"
+							   title="Giỏ hàng"
+							   class="position-relative pr-3"><img src="/img/icon/cart.png"
+									 alt=""
+									 width="20px" /><span class="badge badge-danger position-absolute"
+									  style="top: -2px"> {{cart.countTotal}}
+								</span></a>
+							<th:block th:if="${session.username != null}">
+								<div class="dropdown d-inline">
+									<div class="btn btn-white dropdown-toggle btn-sm"
+										 type="button"
+										 data-toggle="dropdown"
+										 aria-expanded="false"
+										 th:text="${session.username}">
+										<i class="fa fa-user-circle-o"
+										   aria-hidden="true"></i>
+									</div>
+									<div class="dropdown-menu">
+										<a class="dropdown-item"
+										   href="/account/changepassword"> <img src="/img/security.png"
+												 width="15px"
+												 alt=""
+												 class="" /> Đổi
+											mật khẩu
+										</a>
+										<a class="dropdown-item"
+										   href="/account/update-account"><i class="fa fa-pencil-square-o"
+											   aria-hidden="true"></i>Thông tin tài khoản
+										</a>
+										<a class="dropdown-item"
+										   href="/account/logout/success"><i class="fa fa-sign-out"
+											   aria-hidden="true"></i> Đăng xuất
+										</a>
+									</div>
+								</div>
+							</th:block>
+							<th:block th:if="${session.username == null}">
+								<a href="/account/login"
+								   class="btn btn-outline-dark font-weight-bold"> ĐĂNG NHẬP</a>
+							</th:block>
+						</div>
+						<div class="canvas__open">
+							<i class="fa fa-bars"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="toast "
+				 data-delay="1500"
+				 style="position: absolute; top: 10px; right: 10px;">
+				<div class="toast-header ">
+					<i class="fa  fa-check text-success mr-2"></i>
+					<strong class="mr-auto ">4Mems - Thông báo</strong>
+					<button type="button"
+							class="ml-2 mb-1 close"
+							data-dismiss="toast"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="toast-body text-success ">Thêm sản phẩm vào giỏ hàng thành công</div>
+			</div>
+		</header>
+		<!-- Js Plugins -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+				crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"></script>
+
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/main.js}"></script>
+		<script th:src="@{/js/cart.js}"></script>
+		<script th:src="@{/js/product-detail.js}"></script>
+		<script>
+			$(document).ready(function () {
+				$(".myBtn").click(function () {
+					$('.toast').toast('show');
+				});
+			});
+		</script>
+	</body>
+
+</html>

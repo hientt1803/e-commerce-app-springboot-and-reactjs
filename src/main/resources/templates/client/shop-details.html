@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/client/index::dynamic(~{::body})}">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description"
+          content="Male_Fashion Template" />
+    <meta name="keywords"
+          content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge" />
+    <title>Shop Details - 4Mems</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet" />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet"
+          href="/css/bootstrap.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/font-awesome.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/elegant-icons.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/magnific-popup.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/nice-select.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/owl.carousel.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/slicknav.min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="/css/style.css"
+          type="text/css" />
+  </head>
+
+  <body>
+    <!-- Page Preloder -->
+    <!-- <div id="preloder">
+      <div class="loader"></div>
+    </div> -->
+
+    <!-- Start Main Concept -->
+    <main>
+      <!-- Breadcrumb Section Begin -->
+      <section class="breadcrumb-option"
+               style="margin-bottom: 100px">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="breadcrumb__text">
+                <h4>Sản phẩm</h4>
+                <div class="breadcrumb__links">
+                  <a href="/">Trang chủ</a> <a href="/shop">Sản phẩm</a>
+                  <span>Chi tiết sản phẩm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Breadcrumb Section End -->
+
+      <!-- Main concept start-->
+      <section class="shop-details">
+        <div class="container bg-white">
+          <div class="row">
+            <!-- Left image product -->
+            <div class="col-lg-4 d-flex justify-content-center align-items-center"
+                 style="
+                background-color: #ebebeb;
+                border-radius: 15px;
+                height: 350px;
+              ">
+              <img th:src="@{/img/product/{image}(image=${product.image})}"
+                   class="card-img-top" />
+            </div>
+            <!-- Right info product -->
+            <div class="col-lg-7">
+              <!-- Name -->
+              <h4 class="name-product d-flex font-weight-bold justify-content-start mb-3 text-truncate"
+                  th:text="${product.name}"></h4>
+              <!-- Rating -->
+              <div class="rating d-flex mb-2">
+                <!-- <c:forEach begin="1" end="5">
+                <c:choose>
+                  <c:when test="${count_rating >= 1}">
+                    <i class="fa fa-star text-warning"
+                       style="font-size: 20px;"></i>
+                    <c:set var="count_rating"
+                           value="${count_rating - 1}" />
+                  </c:when>
+                  <c:otherwise>
+                    <i class="fa fa-star-o text-warning"
+                       style="font-size: 20px;"></i>
+                  </c:otherwise>
+                </c:choose>
+              </c:forEach> -->
+                <th:block th:each="i: ${#numbers.sequence(1, 5)}">
+                <th:block th:if="${count_rating >= i}">
+                  <i
+                    class="fa fa-star text-warning"
+                    style="font-size: 20px"
+                  ></i>
+                  <th:block
+                    th:with="count_rating=${count_rating - 1}"
+                  ></th:block>
+                </th:block>
+                <th:block th:unless="${count_rating >= i}">
+                  <i
+                    class="fa fa-star-o text-warning"
+                    style="font-size: 20px"
+                  ></i>
+                </th:block>
+              </th:block>
+              <!-- <span> - [[${ reviews.size()} ]] đánh giá</span> -->
+            </div>
+            <br />
+            <h5 class="my-2 d-flex justify-content-start">
+              <!-- <span
+                class="font-weight-bold"
+                th:text="'Tình trạng: ' + ${product.available?'Còn hàng':'Hết hàng'}"
+              ></span>
+              <span class="mx-3">|</span> -->
+              <strong
+                >Danh mục:
+                <a
+                  class="text-secondary"
+                  th:href="@{'/shop/sort-by-category/' + ${product.category.name}}"
+                  >[[${product.category.name}]]</a
+                ></strong
+              >
+            </h5>
+            <strong class="d-flex justify-content-start">MÔ TẢ:</strong>
+            <p class="details text-justify">
+              Là chiếc tai nghe chống ồn mới nhất trên thị trường của hãng âm
+              thanh Đan Mạch. Được trang bị nhiều công nghệ tiên tiến giúp cho
+              chiếc tai nghe có được một khả năng chơi nhạc và chống ồn vô cùng
+              ấn tượng, hứa hẹn sẽ là đối thủ nặng ký của những chiếc tai nghe
+              chống ồn đầu bảng hiện tại.
+            </p>
+            <!-- 					<h5 class="float-left mr-4 mt-2">Giá:</h5> -->
+            <!-- 					<h3 class="text-danger"> -->
+            <!-- 												<fmt:formatNumber value="${ product.price }" type="currency" -->
+            <!-- 													currencySymbol="" /> -->
+            <!-- 						₫ -->
+            <!-- 					</h3> -->
+            <h5 th:inline="text">
+              Giá:
+              <span class="font-weight-bold" style="font-size: 1.5rem"
+                >[[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2,
+                'POINT')}]]</span
+              >
+              <span class="text-danger" style="text-decoration: underline"
+                >đ</span
+              >
+            </h5>
+
+            <!-- quantity form  -->
+           
+              <div class="container p-0 mb-3 float-left">
+                <div class="row mt-3">
+                  <div class="col-lg-2 mt-2">
+                    <h5>Số lượng:</h5>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="input-group mb-3" style="cursor: pointer">
+                      <i
+                        class="fa fa-minus border p-2 text-dark decrease"
+                        aria-hidden="true"
+                        th:attr="ng-click=@{|cart.minusInDetail()|}"
+                      ></i>
+                      <input
+                        type="number"
+                        class="form-control text-center"
+                        id="quantity"
+                         th:attr="ng-change=@{|cart.checkQuantity(${product.quantity})|}"
+                        ng-model="cart.quantityInDetail"
+
+                      />
+                      <i
+                        class="fa fa-plus text-dark border p-2 increase"
+                        aria-hidden="true"
+                        th:attr="ng-click=@{|cart.plusInDetail()|}"
+                      ></i>
+                    </div>
+                  </div>
+                  <div
+                    th:text="${product.quantity} + ' Sản phẩm có sẵn'"
+                    class="col-lg-2 mt-2 text-secondary"
+                    style="min-width: 200px"
+                  ></div>
+                </div>
+              
+              </div>
+              <button ng-if="!cart.isQuantityValid"
+                   class="primary-btn font-weight-bold float-right ">Số lượng bạn chọn không đúng. Vui lòng chọn lại</button>
+              <button
+               ng-if="cart.isQuantityValid"
+                class="primary-btn font-weight-bold float-right myBtn"
+                 th:attr="ng-click=@{|cart.addInDetail(${product.id})|}"
+              >
+                Thêm vào giỏ hàng
+              </button>
+        
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Main concept end-->
+
+    <!-- Rating ception start-->
+    <div class="evaluate-wrapper my-5">
+      <div class="container p-0">
+        <div class="row">
+          <!-- Review title-->
+          <div class="col-lg-12 d-flex">
+            <h4 class="font-weight-bold">ĐÁNH GIÁ SẢN PHẨM</h4>
+            <span class="mx-3">|</span>
+            <h6 class="mt-1 text-secondary">[[${ reviews.size()}]] đánh giá</h6>
+          </div>
+          <div class="col-lg-12 mb-3">
+            <hr />
+          </div>
+          <!-- Review Form -->
+          <div class="col-lg-12">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12 bg-light mb-3">
+                  <form th:action="@{/admin/reviews/create}" method="post">
+                    <div class="rating-wrap">
+                      <!-- <h5 class="mt-2">Đánh giá sao ???</h5> -->
+                      <fieldset class="rating mt-2">
+                        <input
+                          type="radio"
+                          id="star5"
+                          name="ratting"
+                          th:value="5"
+                        /><label
+                          for="star5"
+                          class="full"
+                          title="Awesome"
+                        ></label>
+                        <input
+                          type="radio"
+                          id="star4"
+                          name="ratting"
+                          th:value="4"
+                        /><label for="star4" class="full"></label>
+                        <input
+                          type="radio"
+                          id="star3"
+                          name="ratting"
+                          th:value="3"
+                        /><label for="star3" class="full"></label>
+                        <input
+                          type="radio"
+                          id="star2"
+                          name="ratting"
+                          th:value="2"
+                        /><label for="star2" class="full"></label>
+                        <input
+                          type="radio"
+                          id="star1"
+                          name="ratting"
+                          th:value="1"
+                        /><label for="star1" class="full"></label>
+                      </fieldset>
+                      <input
+                        id="rating-value"
+                        class="mt-3"
+                        name="rating"
+                        hidden
+                        th:value="0"
+                        readonly
+                      />
+                      <input
+                        name="productId"
+                        hidden
+                        th:value="${ product.id }"
+                      />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="mb-3 mt-3">
+                      <label for="evaluate" class="form-label fw-bold"
+                        >Viết đánh giá</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="evaluate"
+                        rows="3"
+                        name="textReview"
+                      ></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                      GỬI ĐÁNH GIÁ
+                    </button>
+                  </form>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <hr />
+                </div>
+
+                <!-- Reviewed section -->
+                <th:block th:each="review : ${reviews}">
+                  <div class="col-lg-1 d-flex justify-content-center">
+                    <img
+                      th:src="@{'/img/user-management/'+${review.account.photo}}"
+                      class="rounded-circle border"
+                      th:alt="${ review.account.fullname }"
+                      style="width: 80px; height: 80px"
+                    />
+                  </div>
+                  <div class="col-lg-11 mb-3">
+                    <strong th:text="${ review.account.fullname }"></strong>
+                    <span
+                      th:text="${#dates.format(review.dateReview, 'dd/MM/yyyy')}"
+                    >
+                    </span
+                    ><br />
+                    <th:block
+                      th:each="i : ${#numbers.sequence(1, review.rating)}"
+                    >
+                      <i class="fa fa-star text-warning"></i>
+                    </th:block>
+                    <p class="fw-light" th:text="${ review.textReview }"></p>
+                  </div>
+                </th:block>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Rating ception end-->
+
+    <!-- Related Section Begin -->
+    <section class="related spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="related-title">Sản Phẩm Cùng Loại</h3>
+          </div>
+        </div>
+        <div class="row">
+        
+          <!-- Item -->
+          <div
+            class="col-lg-4 col-md-6 col-sm-6"
+            th:each="product_similar : ${product_similars}"
+          >
+            <div class="product__item sale">
+              <div class="product__item__pic">
+                <a
+                  th:href="@{/shop/product-detail?id={id}(id=${ product_similar.id })}"
+                >
+                  <img
+                    th:src="@{/img/product/{image}(image = ${product_similar.image})}"
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+              <div class="product__item__text">
+                <h6 th:text="${ product_similar.name }"></h6>
+                <a
+                  th:href="@{/shop/cart-detail/add/{id}(id=${product_similar.id})}"
+                  class="add-cart"
+                  >+ Thêm vào giỏ hàng</a
+                >
+                <h5>
+                  [[${#numbers.formatDecimal(product_similar.price, 0, 'COMMA',
+                  2, 'POINT')}]] <span class="text-danger">đ</span>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Related Section end -->
+
+    <!-- Footer Section Begin -->
+    <footer th:replace="~{/client/footer::footer}"></footer>
+    <!-- Footer end -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+          <input type="text"
+                 id="search-input"
+                 placeholder="Search here....." />
+        </form>
+      </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+            <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+            <script th:src="@{/js/bootstrap.min.js}"></script>
+            <script th:src="@{/js/main.js}"></script>
+            <script th:src="@{/js/cart.js}"></script>
+            <script th:src="@{/js/product-detail.js}"></script>
+            <script>
+              $(document).ready(function () {
+                $(".myBtn").click(function () {
+                  $('.toast').toast('show');
+                });
+              });
+            </script>
+  </body>
+</html>

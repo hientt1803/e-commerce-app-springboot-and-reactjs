@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="ISO-8859-1">
+	</head>
+
+	<body>
+		<footer th:fragment="footer"
+				class="footer">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer__about">
+							<div class="footer__logo">
+								<a href="/"><img th:src="@{/img/main-logo.png}"
+										 alt="" /></a>
+							</div>
+							<p>Khách hàng luôn ở trung tâm trong những giao dịch độc nhất
+								của chúng tôi, bao gốm cả thiết kế.</p>
+							<a href="#"><img src="img/payment.png"
+									 alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
+						<div class="footer__widget">
+							<h6>Sản phẩm</h6>
+							<ul>
+								<li><a href="/shop">Tai nghe</a></li>
+								<li><a href="/shop">Đồng hồ</a></li>
+								<li><a href="/shop">Phụ kiện</a></li>
+								<li><a href="/shop">Túi xách</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="footer__widget">
+							<h6>Thông tin</h6>
+							<ul>
+								<li><a href="#">Liên hệ chúng tôi</a></li>
+								<li><a href="#">Hình thức thanh toán</a></li>
+								<li><a href="#">Vận chuyển</a></li>
+								<li><a href="#">Trả lại và trao đổi</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+						<div class="footer__widget">
+							<h6>Phản hồi</h6>
+							<div class="footer__newslatter">
+								<p>Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi
+									qua Email</p>
+								<form action="#">
+									<input type="text"
+										   placeholder="Email của bạn" />
+									<button type="submit">
+										<span class="icon_mail_alt"></span>
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="footer__copyright__text">
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							<p>
+								&copy;Copyright & Edited
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								by 4MEMS Team
+							</p>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+
+</html>

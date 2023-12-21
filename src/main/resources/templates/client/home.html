@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{/client/index::dynamic(~{::body})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Male_Fashion Template" />
+    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home - 3MEMS</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css"
+    />
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+
+    <style>
+      #myCarousel {
+        --f-carousel-slide-height: 60%;
+        --f-carousel-spacing: 10px;
+        height: 100%;
+      }
+
+      .f-carousel {
+        --f-carousel-slide-width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        .f-carousel {
+          --f-carousel-slide-width: calc(100% / 3);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header Section Begin -->
+    <!-- <header class="header header_scroll_top" id="header_scroll_top">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-3">
+				<div class="header__logo">
+					<a href="/">
+						<img th:src="@{/img/main-logo.png}" alt="" height="33px"/>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-5">
+				<nav class="header__menu mobile-menu">
+					<ul>
+						<li class="${pageActive=='index' ? 'active' : ''}">
+							<a href="/">Trang chủ</a>
+						</li>
+						<li class="${pageActive=='shop' ? 'active' : ''}">
+							<a href="/shop">Sản phẩm</a>
+						</li>
+						<li class="${pageActive=='order-history' ? 'active' : ''}">
+							<a href="/shop/order-history">Đơn hàng </a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-lg-4 col-md-4">
+				<div class="header__nav__option">
+					<a href="/shop/cart-detail" title="Giỏ hàng" class="position-relative pr-3">
+						<img th:src="@{/img/icon/cart.png}" alt="" width="20px"/>
+						<span class="badge badge-danger position-absolute" style="top: -2px"
+							  th:utext="${totalCart}"></span>
+					</a>
+
+					<th:block th:if="${user}">
+						<div class="dropdown d-inline">
+							<div class="btn btn-white dropdown-toggle btn-sm" type="button" data-toggle="dropdown"
+								 aria-expanded="false">
+								<span th:utext="${user}"></span>
+								<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+							</div>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="/account/changepassword">
+									<img th:src="@{/img/security.png}" width="15px" alt="" class=""/>
+									Đổi mật khẩu
+								</a>
+								<a class="dropdown-item" href="/account/updateaccount">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+									Chỉnh sửa tài khoản
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/account/logout">
+									<i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất
+								</a>
+							</div>
+						</div>
+					</th:block>
+					<th:block th:if="!${user}">
+						<a href="/account/login" class="btn btn-outline-dark font-weight-bold">ĐĂNG NHẬP</a>
+					</th:block>
+				</div>
+			</div>
+		</div>
+		<div class="canvas__open">
+			<i class="fa fa-bars"></i>
+		</div>
+	</div>
+</header> -->
+    <!-- Header Section End  -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero mt-3">
+      <div class="f-carousel" id="myCarousel">
+        <div class="f-carousel__viewport">
+          <div class="f-carousel__track">
+            <div
+              class="f-carousel__slide"
+              style="
+                background: url(/img/hero/hero-1.jpg) center/cover no-repeat;
+                width: 100%;
+              "
+            >
+              <div class="container">
+                <div class="row">
+                  <div class="col-xl-5 col-lg-7 col-md-8">
+                    <div class="hero__social">
+                      <h6 style="color: red">Sản phẩm thịnh hành</h6>
+                      <h2 class="font-weight-bold">
+                        Tai nghe không dây <br />
+                        BCAT 2023
+                      </h2>
+                      <p class="font-italic">
+                        Tai nghe không dây chính hãng bán chạy nhất tại việt
+                        nam. Với chất âm bass trầm vang cực hiện đại
+                      </p>
+                      <a href="/shop" class="btn btn-outline-dark"
+                        >Mua ngay<span class="arrow_right"></span>
+                      </a>
+                      <div class="hero__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <section class="banner spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 offset-lg-4">
+            <div class="banner__item">
+              <a
+                href="/shop/shop-search-product-by-tab?keywords=earpod"
+                class="banner__item__pic"
+              >
+                <img
+                  src="img/banner/img-banner-1.png"
+                  style="background: #ebecf1"
+                  alt=""
+                />
+              </a>
+              <div class="banner__item__text">
+                <h2 class="mr-3">Bộ sưu tập EarPod</h2>
+                <a href="/shop/shop-search-product-by-tab?keywords=earpod"
+                  >Mua ngay</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 mt-5">
+            <div class="banner__item banner__item--middle">
+              <a
+                href="/shop/shop-search-product-by-tab?keywords=tai nghe"
+                class="banner__item__pic"
+              >
+                <img
+                  src="img/banner/img-banner-2.png"
+                  style="background: #ebecf1"
+                  alt=""
+                />
+              </a>
+              <div class="banner__item__text">
+                <h2>Tai nghe</h2>
+                <a href="/shop/shop-search-product-by-tab?keywords=tai nghe"
+                  >Mua ngay</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="banner__item banner__item--last">
+              <a
+                href="/shop/shop-search-product-by-tab?keywords=loa"
+                class="banner__item__pic"
+              >
+                <img
+                  src="img/banner/img-banner-3.png"
+                  style="background: #ebecf1"
+                  alt=""
+                />
+              </a>
+              <div class="banner__item__text">
+                <h2>
+                  Bộ sưu tập <br />
+                  Loa
+                </h2>
+                <a href="/shop/shop-search-product-by-tab?keywords=loa"
+                  >Mua ngay</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Banner Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+      <div class="container">
+        <div class="row">
+          <!-- Header fiilter -->
+          <div class="col-lg-12">
+            <ul class="filter__controls">
+              <li class="active" data-filter="*">
+                <a href="/" class="text-dark" data-filter="*">Bán chạy nhất</a>
+              </li>
+              <li data-filter=".new-arrivals">
+                <a
+                  href="/top-lastest"
+                  class="text-dark"
+                  data-filter=".hot-sales"
+                  >Vừa nhập hàng</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- List product -->
+        <div class="row product__filter">
+          <!-- Item -->
+          <div
+            th:each="item : ${items}"
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+          >
+            <div class="product__item">
+              <a
+                th:href="@{|/shop/product-detail?id=${item.id}|}"
+                class="product__item__pic"
+              >
+                <img
+                  th:src="@{|/img/product/${item.image}|}"
+                  class="img-fluid"
+                  th:title="${item.name}"
+                />
+                <span class="label">Mới</span>
+              </a>
+              <div class="product__item__text">
+                <h6 th:text="${item.name}"></h6>
+                <a th:attr="ng-click=@{|cart.add(${item.id})|}" class="add-cart"
+                  >+ Thêm vào giỏ hàng</a
+                >
+                <h5>
+                  [[${#numbers.formatDecimal(item.price,0,'COMMA',0,'POINT')}]]
+                  <span class="text-danger">đ</span>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- Categories Section Begin -->
+    <section class="categories spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="categories__text">
+              <h2>
+                Phụ kiện Hot <br />
+                <span>Bộ sưu tập Tai nghe</span> <br />
+                Load JPL
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="categories__hot__deal">
+              <img src="img/banner/img-banner-2.png" alt="" />
+              <div class="hot__deal__sticker">
+                <span>Giảm giá</span>
+                <h5>100.000 đ</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1">
+            <div class="categories__deal__countdown">
+              <span>Sản phẩm của tuần</span>
+              <h2>Tai nghe không dây Havit 967</h2>
+              <a href="#" class="primary-btn">Mua ngay</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/jquery.countdown.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
